@@ -1,14 +1,5 @@
 from django.db import models
-
-
-# TODO: Это вообще зачем? Заюзать стандартную модель
-class User(models.Model):
-    username = models.CharField(max_length=30)
-    password = models.CharField(max_length=100)
-    email = models.EmailField()
-    # TODO: может придумаем что-то получше?
-    avatar = models.CharField(max_length=100, null=True)
-    register_date = models.DateTimeField()
+from django.contrib.auth.models import User
 
 
 class Answer(models.Model):
