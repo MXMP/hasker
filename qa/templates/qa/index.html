@@ -1,0 +1,7 @@
+<h1>Список вопросов</h1>
+
+<ul>
+{% for question in question_list %}
+    <li>{{ question.header }}</li>
+{% endfor %}
+</ul>
