@@ -5,9 +5,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <link rel="stylesheet" href="{% static 'qa/css/bootstrap.min.css' %}">
-
+    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"
+            integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP"
+            crossorigin="anonymous"></script>
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
@@ -23,14 +24,23 @@
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Log in</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Sign up</a>
-            </li>
-        </ul>
+        {% if user.is_authenticated %}
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fas fa-user"></i> {{ user.username }} <i
+                            class="fas fa-sign-out-alt"></i></a>
+                </li>
+            </ul>
+        {% else %}
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Log in</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Sign up</a>
+                </li>
+            </ul>
+        {% endif %}
 
     </div>
 </nav>
@@ -41,7 +51,9 @@
             {% block body %}{% endblock %}
         </div>
         <div class="col-3">
-            <a href="#" class="btn btn-primary">Ask!</a>
+            {% if user.is_authenticated %}
+                <a href="#" class="btn btn-primary">Ask!</a>
+            {% endif %}
             <div class="card">
                 <div class="card-header">
                     Trending
