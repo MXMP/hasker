@@ -35,9 +35,27 @@
     </div>
 </nav>
 
-<main role="main" class="container">
-    {% block body %}{% endblock %}
-</main>
+<div role="main" class="container">
+    <div class="row">
+        <div class="col">
+            {% block body %}{% endblock %}
+        </div>
+        <div class="col-3">
+            <a href="#" class="btn btn-primary">Ask!</a>
+            <div class="card">
+                <div class="card-header">
+                    Trending
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Cras justo odio</li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                    <li class="list-group-item">Vestibulum at eros</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
 <script src="{% static 'qa/js/jquery-3.3.1.slim.min.js' %}"></script>
 <script src="{% static 'qa/js/bootstrap.bundle.min.js' %}"></script>
 </body>
