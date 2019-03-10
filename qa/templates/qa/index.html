@@ -1,7 +1,26 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="{% static 'qa/css/bootstrap.min.css' %}">
+
+    <title>Hello, world!</title>
+</head>
+<body>
+
 <h1>Список вопросов</h1>
 
 <ul>
-{% for question in question_list %}
-    <li>{{ question.header }}</li>
-{% endfor %}
+    {% for question in question_list %}
+        <li>{{ question.header }}</li>
+    {% endfor %}
 </ul>
+
+<script src="{% static 'qa/js/jquery-3.3.1.slim.min.js' %}"></script>
+<script src="{% static 'qa/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
