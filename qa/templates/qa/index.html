@@ -3,11 +3,58 @@
 {% block title %}Questions{% endblock %}
 
 {% block body %}
-    <h1>New questions sSPSJCiGGp7u3S</h1>
-
-    <ul>
-        {% for question in question_list %}
-            <li>{{ question.header }}</li>
-        {% endfor %}
-    </ul>
+    <div class="card">
+        <div class="card-header">
+            <ul class="nav nav-pills card-header-pills">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">New sSPSJCiGGp7u3S</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Hot</a>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                {% for question in question_list %}
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-2">
+                                <div class="row">
+                                    <div class="col">??</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">votes</div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="row">
+                                    <div class="col">??</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">answers</div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col">{{ question.header }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col"><a href="#" class="badge badge-pill badge-primary">tags</a></div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="row">
+                                    <div class="col">{{ question.author }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">(ago)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 {% endblock %}
