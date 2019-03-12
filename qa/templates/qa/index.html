@@ -3,11 +3,11 @@
 {% block title %}Questions{% endblock %}
 
 {% block body %}
-    <div class="card">
+    <div class="card text-center">
         <div class="card-header">
             <ul class="nav nav-pills card-header-pills">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">New sSPSJCiGGp7u3S</a>
+                    <a class="nav-link active" href="#">New</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Hot</a>
@@ -19,36 +19,56 @@
                 {% for question in question_list %}
                     <li class="list-group-item">
                         <div class="row">
-                            <div class="col-2">
+                            <div class="col-1">
                                 <div class="row">
-                                    <div class="col">??</div>
+                                    <div class="col">
+                                        {{ question.votes }}
+                                    </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col">votes</div>
+                                    <div class="col">
+                                        <small>votes</small>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="row">
-                                    <div class="col">??</div>
+                                    <div class="col">
+                                        {{ question.answer_set.count }}
+                                    </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col">answers</div>
+                                    <div class="col">
+                                        <small>answers</small>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="row">
-                                    <div class="col">{{ question.header }}</div>
+                                    <div class="col">
+                                        <a href="#">{{ question.header }}</a>
+                                    </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col"><a href="#" class="badge badge-pill badge-primary">tags</a></div>
-                                </div>
+                                {% if question.tag_set.count %}
+                                    <div class="row">
+                                        <div class="col">
+                                            {% for tag in question.tag_set.all %}
+                                                <a href="#" class="badge badge-pill badge-primary">#{{ tag }}</a>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                {% endif %}
                             </div>
-                            <div class="col-2">
+                            <div class="col-3">
                                 <div class="row">
-                                    <div class="col">{{ question.author }}</div>
+                                    <div class="col">
+                                        <a href="#"><i class="fas fa-user"></i> {{ question.author }}</a>
+                                    </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col">(ago)</div>
+                                    <div class="col">
+                                        <small>{{ question.pub_date|timesince }} ago</small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
