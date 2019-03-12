@@ -1,0 +1,71 @@
+{% extends 'qa/base.html' %}
+
+{% block title %}Under construction!{% endblock %}
+
+{% block body %}
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <h1>{{ question.header }}</h1>
+            <div class="row">
+                <div class="col-1">
+                    <div class="btn-group-vertical">
+                        <button type="button" class="btn btn-secondary"><i class="fas fa-angle-up"></i></button>
+                        <button type="button" class="btn btn-secondary disabled">{{ question.votes }}</button>
+                        <button type="button" class="btn btn-secondary"><i class="fas fa-angle-down"></i></button>
+                    </div>
+                </div>
+                <div class="col">{{ question.text }}</div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    {% for tag in question.tag_set.all %}
+                        <a href="#" class="badge badge-pill badge-primary">#{{ tag }}</a>
+                    {% endfor %}
+                </div>
+                <div class="col-3 text-right">
+                    <div class="row">
+                        <div class="col">
+                            <a href="#"><i class="fas fa-user"></i> {{ question.author }}</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <small>{{ question.pub_date|timesince }} ago</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+
+        {% for answer in question.answer_set.all %}
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-1">
+                        <div class="btn-group-vertical">
+                            <button type="button" class="btn btn-secondary"><i class="fas fa-angle-up"></i></button>
+                            <button type="button" class="btn btn-secondary disabled">{{ answer.votes }}</button>
+                            <button type="button" class="btn btn-secondary"><i class="fas fa-angle-down"></i></button>
+                        </div>
+                    </div>
+                    <div class="col">{{ answer.content }}</div>
+                </div>
+                <div class="row">
+                    <div class="col-1"><i class="far fa-star"></i></div>
+                    <div class="col text-right">
+                        <div class="row">
+                            <div class="col">
+                                <a href="#"><i class="fas fa-user"></i> {{ answer.author }}</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <small>{{ answer.pub_date|timesince }} ago</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+
+    </ul>
+{% endblock %}
