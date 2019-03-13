@@ -9,10 +9,19 @@
             <div class="row">
                 <div class="col-1">
                     <div class="btn-group-vertical">
-                        <button type="button" class="btn btn-sm btn-secondary"><i class="fas fa-angle-up"></i></button>
-                        <button type="button" class="btn btn-sm btn-secondary disabled">{{ question.votes }}</button>
-                        <button type="button" class="btn btn-sm btn-secondary"><i class="fas fa-angle-down"></i>
-                        </button>
+                        <form action="{% url 'qa:question_vote' question.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" name="question_vote" id="question_vote_up" value="up"
+                                    class="btn btn-sm btn-secondary">
+                                <i class="fas fa-angle-up"></i>
+                            </button>
+                            <button type="button"
+                                    class="btn btn-sm btn-secondary disabled">{{ question.votes }}</button>
+                            <button type="submit" name="question_vote" id="question_vote_down" value="down"
+                                    class="btn btn-sm btn-secondary">
+                                <i class="fas fa-angle-down"></i>
+                            </button>
+                        </form>
                     </div>
                 </div>
                 <div class="col">{{ question.text }}</div>
@@ -43,10 +52,12 @@
                 <div class="row">
                     <div class="col-1">
                         <div class="btn-group-vertical">
-                            <button type="button" class="btn btn-sm btn-secondary"><i class="fas fa-angle-up"></i>
+                            <button type="button" class="btn btn-sm btn-secondary">
+                                <i class="fas fa-angle-up"></i>
                             </button>
                             <button type="button" class="btn btn-sm btn-secondary disabled">{{ answer.votes }}</button>
-                            <button type="button" class="btn btn-sm btn-secondary"><i class="fas fa-angle-down"></i>
+                            <button type="button" class="btn btn-sm btn-secondary">
+                                <i class="fas fa-angle-down"></i>
                             </button>
                         </div>
                     </div>
@@ -73,7 +84,7 @@
     </ul>
 
     <form action="{% url 'qa:answer_question' question.id %}" method="post">
-    {% csrf_token %}
+        {% csrf_token %}
         <div class="form-group">
             <label for="answer_content">Your answer</label>
             <textarea name="answer_content" cols="30" rows="10" class="form-control" id="answer_content"></textarea>
