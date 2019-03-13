@@ -72,10 +72,11 @@
 
     </ul>
 
-    <form>
+    <form action="{% url 'qa:answer_question' question.id %}" method="post">
+    {% csrf_token %}
         <div class="form-group">
-            <label for="answer">Your answer</label>
-            <textarea cols="30" rows="10" class="form-control" id="answer"></textarea>
+            <label for="answer_content">Your answer</label>
+            <textarea name="answer_content" cols="30" rows="10" class="form-control" id="answer_content"></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

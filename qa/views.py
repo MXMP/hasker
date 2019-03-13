@@ -22,5 +22,5 @@ class QuestionView(DetailView):
 
 def answer_question(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
-    question.answer_set.add()
+    question.answer_set.create(content=request.POST['answer_content'], author=request.user)
     return HttpResponseRedirect(reverse('qa:question_view', args=(question.id,)))

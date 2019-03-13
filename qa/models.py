@@ -1,12 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 
 class Answer(models.Model):
     content = models.TextField()
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     for_question = models.ForeignKey('qa.Question', on_delete=models.CASCADE)
-    pub_date = models.DateTimeField()
+    pub_date = models.DateTimeField(default=timezone.now)
     votes = models.IntegerField(default=0)
 
     def __str__(self):
@@ -16,7 +17,7 @@ class Answer(models.Model):
 class Question(models.Model):
     header = models.CharField(max_length=100)
     text = models.TextField()
-    pub_date = models.DateTimeField()
+    pub_date = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     right_answer = models.ForeignKey(Answer, on_delete=models.SET_NULL, null=True, blank=True)
     votes = models.IntegerField(default=0)
