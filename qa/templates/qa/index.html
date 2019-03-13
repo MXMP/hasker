@@ -46,7 +46,7 @@
                             <div class="col">
                                 <div class="row">
                                     <div class="col">
-                                        <a href="#">{{ question.header }}</a>
+                                        <a href="{% url 'qa:question_view' question.id %}">{{ question.header }}</a>
                                     </div>
                                 </div>
                                 {% if question.tag_set.count %}

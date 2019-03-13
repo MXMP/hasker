@@ -1,7 +1,8 @@
 from django.urls import path, include
-import django.contrib.auth.urls
 
 from . import views
+
+app_name = 'qa'
 
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
