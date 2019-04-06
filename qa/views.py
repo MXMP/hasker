@@ -1,4 +1,4 @@
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.http import HttpResponseRedirect
@@ -12,13 +12,20 @@ class IndexView(ListView):
     template_name = 'qa/index.html'
     paginate_by = 20
 
-    def get_queryset(self):
-        return Question.objects.order_by('-pub_date')
+    def get_ordering(self):
+        return '-pub_date'
 
 
 class QuestionView(DetailView):
     model = Question
     template_name = 'qa/question.html'
+
+
+class AskView(CreateView):
+    model = Question
+    template_name = 'qa/ask_question.html'
+    # TODO: добавить поле для тегов
+    fields = ['header', 'text']
 
 
 def answer_question(request, question_id):

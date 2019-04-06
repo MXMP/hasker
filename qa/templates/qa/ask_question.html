@@ -3,5 +3,9 @@
 {% block title %}Under construction!{% endblock %}
 
 {% block body %}
-    <h1>Under construction!</h1>
+    <form method="post">
+    {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Ask">
+    </form>
 {% endblock %}

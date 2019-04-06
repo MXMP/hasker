@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.urls import reverse
 
 
 class Answer(models.Model):
@@ -24,6 +25,9 @@ class Question(models.Model):
 
     def __str__(self):
         return self.header
+
+    def get_absolute_url(self):
+        return reverse('qa:question_view', kwargs={'pk': self.pk})
 
 
 class Tag(models.Model):
