@@ -1,11 +1,46 @@
 {% extends 'qa/base.html' %}
+{% load static %}
+
+{% block custom_styles %}
+    <link rel="stylesheet" href="{% static 'qa/css/tagsinput.css' %}">
+{% endblock %}
 
 {% block title %}Under construction!{% endblock %}
 
 {% block body %}
     <form method="post">
-    {% csrf_token %}
+        {% csrf_token %}
         {{ form.as_p }}
+        <input type="text" value="Amsterdam,Washington" data-role="tagsinput"/>
         <input type="submit" value="Ask">
     </form>
+{% endblock %}
+
+{% block custom_scripts %}
+    <script src="{% static 'qa/js/typeahead.bundle.min.js' %}"></script>
+    <script src="{% static 'qa/js/tagsinput.js' %}"></script>
+    <script>
+        var citynames = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            prefetch: {
+                url: '{% static 'qa/citynames.json' %}',
+                filter: function (list) {
+                    return $.map(list, function (cityname) {
+                        return {name: cityname};
+                    });
+                }
+            }
+        });
+        citynames.initialize();
+
+        $('input').tagsinput({
+            typeaheadjs: {
+                name: 'citynames',
+                displayKey: 'name',
+                valueKey: 'name',
+                source: citynames.ttAdapter()
+            }
+        });
+    </script>
 {% endblock %}
