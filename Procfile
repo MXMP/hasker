@@ -1,1 +1,1 @@
-web: gunicorn mxmp-hasker.wsgi
+web: gunicorn hasker.wsgi
