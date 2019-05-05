@@ -46,7 +46,7 @@
                     <a class="nav-link" href="{% url 'qa:login'%}?next={{ request.path }}">Log in</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Sign up</a>
+                    <a class="nav-link" href="{% url 'qa:signup' %}">Sign up</a>
                 </li>
             </ul>
         {% endif %}
